@@ -22,7 +22,6 @@ export class RebotsPage{
     public alertCtrl: AlertController,
     public database: AngularFireDatabase
   ) {
-    super();
     this.jugadorsRef = this.database.list('jugadors');
     this.jugadors = this.jugadorsRef.snapshotChanges()
     .map(changes => {
