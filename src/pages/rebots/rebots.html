@@ -8,7 +8,7 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor='let jugador of jugadors | async'>
-      <ion-item *ngIf="jugador.aPista">
+      <ion-item [ngClass]="{'yellow': jugador.faltes==4}" *ngIf="jugador.aPista && jugador.faltes<5">
         <ion-label>{{ jugador.dorsal }}</ion-label>
         <ion-checkbox (ionChange)="jugadorForaPista(jugador)" [checked]="jugador.aPista"></ion-checkbox>
         <ion-buttons item-end>
@@ -26,7 +26,7 @@
   <ion-fab #fab right bottom>
       <button ion-fab color="light"><ion-icon name="swap"></ion-icon></button>
       <ion-fab-list side="left">
-        <button ion-fab *ngFor="let jugador of jugadors | async" [hidden]="jugador.aPista" (click)="jugadorAPista(jugador)">{{ jugador.dorsal }}</button>
+        <button ion-fab *ngFor="let jugador of jugadors | async" [hidden]="jugador.aPista" (click)="jugadorEntraPista(jugador)">{{ jugador.dorsal }}</button>
       </ion-fab-list>
   </ion-fab>
 </ion-content>
