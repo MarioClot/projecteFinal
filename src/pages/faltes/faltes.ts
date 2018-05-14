@@ -24,7 +24,6 @@ export class FaltesPage extends Utils{
     });
     if(jugador.faltes==4){
       this.jugadorExpulsat(jugador);
-      //this.jugadorsRef.update
     }
   }
 
