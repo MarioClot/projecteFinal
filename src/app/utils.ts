@@ -15,7 +15,7 @@ export class Utils {
     constructor(
         public navCtrl: NavController,
         public alertCtrl: AlertController,
-        public database: AngularFireDatabase
+        public database: AngularFireDatabase,
     ){
         this.jugadorsRef = this.database.list('/equip/jugadors');
         this.jugadors = this.jugadorsRef.snapshotChanges()
@@ -31,7 +31,7 @@ export class Utils {
     }
 
     ngOnInit(){
-        this.equipRef.valueChanges().subscribe(res => this.jugadorsAPista = res[1]);  
+        this.equipRef.valueChanges().subscribe(res => this.jugadorsAPista = res[1]);
     }
 
     jugadorForaPista(jugador){
@@ -53,6 +53,14 @@ export class Utils {
             });
             this.jugadorsAPista++;
             this.fab.close();
+        } else {
+            let alert = this.alertCtrl.create({
+                title: 'Maxim 5 jugadors',
+                subTitle: 'A pista nomes poden haver 5 jugadors',
+                buttons: ['OK']
+            });
+            alert.present();
+            
         }
         this.equipRef.set('jugadorsAPista',this.jugadorsAPista);       
     }

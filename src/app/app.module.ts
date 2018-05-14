@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, IonicPageModule } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { PuntsPage } from '../pages/punts/punts';
@@ -14,15 +14,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyAVWm2l2gnjPghiwgtngjZ61HELQ5Y8qNw",
-  authDomain: "projecte-final-ionic.firebaseapp.com",
-  databaseURL: "https://projecte-final-ionic.firebaseio.com",
-  projectId: "projecte-final-ionic",
-  storageBucket: "projecte-final-ionic.appspot.com",
-  messagingSenderId: "786740284616"
-};
+import { firebaseConfig } from '../config';
 
 @NgModule({
   declarations: [
@@ -36,7 +30,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig,'demo104'),
+    AngularFireModule.initializeApp(firebaseConfig.fire),
     AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
@@ -51,7 +45,8 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AngularFireAuth
   ]
 })
 export class AppModule {}
