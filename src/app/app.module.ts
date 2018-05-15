@@ -20,6 +20,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from '../services/auth.service';
 
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+
 import { firebaseConfig } from '../config';
 
 @NgModule({
@@ -56,7 +59,9 @@ import { firebaseConfig } from '../config';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    AngularFireAuth
+    AngularFireAuth,
+    File,
+    FileOpener,
   ]
 })
 export class AppModule {}

@@ -1,26 +1,56 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, AlertController, Nav } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { AlertController, NavController, Platform } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
-import { LoginPage } from '../../pages/login/login';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { FileOpener } from '@ionic-native/file-opener';
+import { File } from '@ionic-native/file';
+import { Utils } from '../../app/utils';
+import { AngularFireDatabase } from 'angularfire2/database';
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
-
-  @ViewChild(Nav) nav: Nav;
-
-  constructor(public navCtrl: NavController,
-    public alertCtrl: AlertController, public auth: AuthService) {
+export class HomePage extends Utils{
+  pdfObj = null;
+  arrayJugadors = new Array;
+  constructor(
+    public alertCtrl: AlertController,
+    public navCtrl: NavController, 
+    private plt: Platform,
+    public auth: AuthService,
+    public database: AngularFireDatabase,
+    private file: File, 
+    private fileOpener: FileOpener
+  ) {
+    super(navCtrl, alertCtrl, database);
       this.auth = auth;
+      this.jugadors.forEach((element) => {
+        element.forEach(subElement => {
+          //console.log(subElement);
+          this.arrayJugadors.push(subElement);
+        });
+      });
   }
 
   logout() {
-    if(!this.auth.authenticated) {
-      this.nav.setRoot(LoginPage);
-    }
     this.auth.signOut();
   }
 
+  generatePDF(){
+    // TODO: this.arrayJugadors estan els jugadors guardats, on puc
+    //      accedir a dorsal, punts...
+    /*var docDefinition = {
+      content: [
+
+      ],
+      styles: {
+
+      }
+    }
+    this.pdfObj = pdfMake.createPdf(docDefinition);*/ 
+  }
 }
