@@ -7,6 +7,7 @@ import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
 import { Utils } from '../../app/utils';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { ConvocatsPage } from '../convocats/convocats';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -30,7 +31,6 @@ export class HomePage extends Utils{
       this.auth = auth;
       this.jugadors.forEach((element) => {
         element.forEach(subElement => {
-          //console.log(subElement);
           this.arrayJugadors.push(subElement);
         });
       });
@@ -38,6 +38,10 @@ export class HomePage extends Utils{
 
   logout() {
     this.auth.signOut();
+  }
+
+  goToConvocats() {
+    this.navCtrl.setRoot(ConvocatsPage);
   }
 
   generatePDF(){

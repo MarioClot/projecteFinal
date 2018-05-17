@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Platform, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../services/auth.service';
+import { ConvocatsPage } from '../pages/convocats/convocats';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,7 +33,7 @@ export class MyApp {
       .subscribe(
         user => {
           if (user) {
-            this.rootPage = TabsPage;
+            this.rootPage = ConvocatsPage;
           } else {
             this.rootPage = LoginPage;
           }
