@@ -9,7 +9,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'convocats.html',
 })
 export class ConvocatsPage extends Utils {
-
+  dorsals: Array<string>;
   rootPage;
   
   @ViewChild(Nav) nav: Nav;
@@ -21,6 +21,25 @@ export class ConvocatsPage extends Utils {
   }
 
   goToApp() {
-    this.navCtrl.setRoot(TabsPage);
+    if (this.dorsals){
+      this.createPlayers()
+    }
+      this.navCtrl.setRoot(TabsPage);
+  }
+
+  createPlayers() {
+    //var dorsal = 20;
+    console.log(this.dorsals);
+    this.dorsals.forEach(dorsal => {
+      console.log(dorsal);
+      this.database.object(`equip/jugadors/${dorsal}`).update({
+        aPista: false,
+        dorsal: parseInt(dorsal),
+        punts: 0,
+        faltes: 0,
+        asistencies: 0,
+        rebots: 0
+      });
+    })
   }
 }

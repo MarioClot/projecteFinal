@@ -31,6 +31,7 @@ export class HomePage extends Utils{
       this.auth = auth;
       this.jugadors.forEach((element) => {
         element.forEach(subElement => {
+          console.log(subElement);
           this.arrayJugadors.push(subElement);
         });
       });
