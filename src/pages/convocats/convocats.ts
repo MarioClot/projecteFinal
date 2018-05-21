@@ -27,19 +27,43 @@ export class ConvocatsPage extends Utils {
       this.navCtrl.setRoot(TabsPage);
   }
 
-  createPlayers() {
-    //var dorsal = 20;
-    console.log(this.dorsals);
-    this.dorsals.forEach(dorsal => {
-      console.log(dorsal);
-      this.database.object(`equip/jugadors/${dorsal}`).update({
-        aPista: false,
-        dorsal: parseInt(dorsal),
-        punts: 0,
-        faltes: 0,
-        asistencies: 0,
-        rebots: 0
+  onSelect() {
+    if (this.dorsals.length>12) {
+      let alert = this.alertCtrl.create({
+        title: 'Maxim 12 convocats',
+        subTitle: 'Nomes pot haver 12 jugadors convocats',
+        buttons: ['OK']
       });
+      alert.present();
+      this.dorsals = [];
+    }
+  }
+
+  createPlayers() {
+    if(this.arrayJugadors.length<12) {
+        this.dorsals.forEach(dorsal => {
+          this.database.object(`equip/jugadors/${dorsal}`).update({
+            aPista: false,
+            dorsal: parseInt(dorsal),
+            punts: 0,
+            faltes: 0,
+            asistencies: 0,
+            rebots: 0
+          });
+        })
+      let alert = this.alertCtrl.create({
+        title: this.dorsals.length+' jugadors creats',
+        subTitle: 'S\'han creat '+this.dorsals.length+' jugadors correctament',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+  }
+
+  emptyDB() {
+    this.arrayJugadors.forEach((element) => {
+      this.jugadorsRef.remove(element.key);
     })
+    this.equipRef.set('jugadorsAPista',0);    
   }
 }

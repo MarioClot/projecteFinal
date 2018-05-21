@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Faltes
+      Asistencies
     </ion-title>
   </ion-navbar>
   <header></header>
@@ -13,11 +13,11 @@
         <ion-label>{{ jugador.dorsal }}</ion-label>
         <ion-checkbox (ionChange)="jugadorForaPista(jugador)" [checked]="jugador.aPista"></ion-checkbox>
         <ion-buttons item-end>
-          <button ion-button clear icon-only (click)="removeFalta( jugador )">
+          <button ion-button clear icon-only (click)="removeAsist( jugador )">
             <ion-icon name="remove-circle"></ion-icon>
           </button>
-          {{ jugador.faltes }}
-          <button ion-button clear icon-only (click)="addFalta( jugador )">
+          {{ jugador.asistencies }}
+          <button ion-button clear icon-only (click)="addAsist( jugador )">
             <ion-icon name="add-circle"></ion-icon>
           </button>
         </ion-buttons>

@@ -9,6 +9,13 @@ export class Utils {
     equipRef: AngularFireList<any>;
     equip: Observable<any[]>;
     jugadorsAPista = 0;
+    statsTotals = {
+        punts: 0,
+        faltes: 0,
+        rebots: 0,
+        asistencies: 0
+    };
+    arrayJugadors = new Array;    
 
     @ViewChild('fab')fab : FabContainer;
        
@@ -28,6 +35,12 @@ export class Utils {
         .map(changes => {
           return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
+
+        this.jugadors.forEach((element) => {
+            element.forEach(subelement => {
+                this.arrayJugadors.push(subelement);
+            })
+        })
     }
 
     ngOnInit(){
@@ -66,7 +79,6 @@ export class Utils {
     }
 
     jugadorExpulsat(jugador){
-        console.log("hei")
         this.jugadorsRef.update(jugador.key, {
             dorsal: jugador.dorsal,
             aPista: 'expulsat'

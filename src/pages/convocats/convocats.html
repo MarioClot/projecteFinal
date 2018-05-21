@@ -6,10 +6,14 @@
 <ion-content padding>
   <ion-item>
       <ion-label>Jugadors</ion-label>
-      <ion-select [(ngModel)]="dorsals" multiple="true" cancelText="Nah" okText="Okay!">
+      <ion-select [(ngModel)]="dorsals" (ionChange)="onSelect()" multiple="true" cancelText="Cancela" okText="Crea">
         <ion-option *ngFor ="let dummy of ' '.repeat(99).split(''), let x = index" value="{{ x+1 }}">{{ x+1 }}</ion-option>
       </ion-select>
     </ion-item>
+    <button ion-button icon-left color="danger" (click)="emptyDB()">
+      <ion-icon name="trash" item-left></ion-icon>
+      Esborra tots
+    </button>
     <button ion-button icon-left (click)="goToApp()">
       <ion-icon name="basketball" item-left></ion-icon>
       Go to App

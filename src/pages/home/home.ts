@@ -29,12 +29,6 @@ export class HomePage extends Utils{
   ) {
     super(navCtrl, alertCtrl, database);
       this.auth = auth;
-      this.jugadors.forEach((element) => {
-        element.forEach(subElement => {
-          console.log(subElement);
-          this.arrayJugadors.push(subElement);
-        });
-      });
   }
 
   logout() {
@@ -46,8 +40,6 @@ export class HomePage extends Utils{
   }
 
   generatePDF(){
-    // TODO: this.arrayJugadors estan els jugadors guardats, on puc
-    //      accedir a dorsal, punts...
     var body = [['Dorsal', 'Punts', 'Faltes', 'Rebots', 'Asistencies']];
 
     this.arrayJugadors.forEach((element) => {
@@ -87,10 +79,7 @@ export class HomePage extends Utils{
     if (this.plt.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
- 
-        // Save the PDF to the data Directory of our App
         this.file.writeFile(this.file.dataDirectory, 'stats.pdf', blob, { replace: true }).then(fileEntry => {
-          // Open the PDf with the correct OS tools
           this.fileOpener.open(this.file.dataDirectory + 'stats.pdf', 'application/pdf');
         })
       });

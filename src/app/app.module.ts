@@ -8,6 +8,7 @@ import { PuntsPage } from '../pages/punts/punts';
 import { FaltesPage } from '../pages/faltes/faltes';
 import { HomePage } from '../pages/home/home';
 import { RebotsPage } from '../pages/rebots/rebots';
+import { AsistenciesPage } from '../pages/asistencies/asistencies';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
@@ -25,6 +26,7 @@ import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 
 import { firebaseConfig } from '../config';
+import { HeaderComponentModule } from '../components/header/header.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { firebaseConfig } from '../config';
     HomePage,
     TabsPage,
     RebotsPage,
+    AsistenciesPage,
     ConvocatsPage,
     LoginPage,
     SignupPage
@@ -43,7 +46,8 @@ import { firebaseConfig } from '../config';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig.fire),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    HeaderComponentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,6 +57,7 @@ import { firebaseConfig } from '../config';
     HomePage,
     TabsPage,
     RebotsPage,
+    AsistenciesPage,    
     ConvocatsPage,
     LoginPage,
     SignupPage

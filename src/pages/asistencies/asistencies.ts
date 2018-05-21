@@ -4,10 +4,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Utils } from '../../app/utils';
 
 @Component({
-  selector: 'page-punts',
-  templateUrl: 'punts.html'
+  selector: 'page-asistencies',
+  templateUrl: 'asistencies.html'
 })
-export class PuntsPage extends Utils{
+export class AsistenciesPage extends Utils{
 
   constructor(
     public navCtrl: NavController,
@@ -17,19 +17,18 @@ export class PuntsPage extends Utils{
     super(navCtrl, alertCtrl, database);
   }
 
-  addPunt(jugador) {
+  addAsist(jugador) {
     this.jugadorsRef.update(jugador.key,{
         dorsal: jugador.dorsal,
-        punts: jugador.punts+1
+        asistencies: jugador.asistencies+1
     });
-    this.statsTotals.punts = this.statsTotals.punts+1;
   }
 
-  removePunt(jugador) {
+  removeAsist(jugador) {
     this.jugadorsRef.update(jugador.key,{
         dorsal: jugador.dorsal,
-        punts: jugador.punts-1
+        asistencies: jugador.asistencies-1
     });
-    this.statsTotals.punts = this.statsTotals.punts-1;   
   }
+
 }
