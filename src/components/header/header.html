@@ -1,3 +1,6 @@
 <div>
-    {{statsTotals.punts}}
+    <!--p *ngFor='let jugador of jugadors | async'>
+        {{jugador.punts}}
+    </p-->
+    <p *ngFor='let stat of stats | async'>P{{ stat.value }}</p>
 </div>

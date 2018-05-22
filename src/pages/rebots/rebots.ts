@@ -22,12 +22,20 @@ export class RebotsPage extends Utils{
         dorsal: jugador.dorsal,
         rebots: jugador.rebots+1
     });
+    this.statsTotals.rebots++;
+    this.statsRef.update('rebotsTotals',{
+      value: this.statsTotals.rebots
+    });
   }
 
   removeRebot(jugador) {
     this.jugadorsRef.update(jugador.key,{
         dorsal: jugador.dorsal,
         rebots: jugador.rebots-1
+    });
+    this.statsTotals.rebots--;
+    this.statsRef.update('rebotsTotals',{
+      value: this.statsTotals.rebots
     });
   }
 

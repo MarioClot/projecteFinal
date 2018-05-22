@@ -64,6 +64,12 @@ export class ConvocatsPage extends Utils {
     this.arrayJugadors.forEach((element) => {
       this.jugadorsRef.remove(element.key);
     })
-    this.equipRef.set('jugadorsAPista',0);    
+    this.equipRef.set('jugadorsAPista',0);
+    this.statsTotals = {
+      punts: 0,
+      faltes: 0,
+      rebots: 0,
+      asistencies: 0
+    }
   }
 }

@@ -22,12 +22,20 @@ export class AsistenciesPage extends Utils{
         dorsal: jugador.dorsal,
         asistencies: jugador.asistencies+1
     });
+    this.statsTotals.asistencies++;
+    this.statsRef.update('asistenciesTotals',{
+      value: this.statsTotals.asistencies
+    });
   }
 
   removeAsist(jugador) {
     this.jugadorsRef.update(jugador.key,{
         dorsal: jugador.dorsal,
         asistencies: jugador.asistencies-1
+    });
+    this.statsTotals.asistencies--;
+    this.statsRef.update('asistenciesTotals',{
+      value: this.statsTotals.asistencies
     });
   }
 

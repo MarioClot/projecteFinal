@@ -22,6 +22,10 @@ export class FaltesPage extends Utils{
         dorsal: jugador.dorsal,
         faltes: jugador.faltes+1
     });
+    this.statsTotals.faltes++;
+    this.statsRef.update('faltesTotals',{
+      value: this.statsTotals.faltes
+    });
     if(jugador.faltes==4){
       this.jugadorExpulsat(jugador);
     }
@@ -31,6 +35,10 @@ export class FaltesPage extends Utils{
     this.jugadorsRef.update(jugador.key,{
         dorsal: jugador.dorsal,
         faltes: jugador.faltes-1
+    });
+    this.statsTotals.faltes--;
+    this.statsRef.update('faltesTotals',{
+      value: this.statsTotals.faltes
     });
   }
 }  

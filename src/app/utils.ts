@@ -4,6 +4,8 @@ import { ViewChild } from "@angular/core";
 import { FabContainer, NavController, AlertController } from "ionic-angular";
 
 export class Utils {
+    statsRef: AngularFireList<any>;
+    stats: Observable<any[]>;
     jugadorsRef: AngularFireList<any>;
     jugadors: Observable<any[]>;
     equipRef: AngularFireList<any>;
@@ -24,6 +26,13 @@ export class Utils {
         public alertCtrl: AlertController,
         public database: AngularFireDatabase,
     ){
+
+        this.statsRef = this.database.list('/equip/stats');
+        this.stats = this.statsRef.snapshotChanges()
+        .map(changes => {
+          return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
+
         this.jugadorsRef = this.database.list('/equip/jugadors');
         this.jugadors = this.jugadorsRef.snapshotChanges()
         .map(changes => {
@@ -41,6 +50,11 @@ export class Utils {
                 this.arrayJugadors.push(subelement);
             })
         })
+        this.stats.forEach(element => {
+            element.forEach(subelement => {
+                //console.log(subelement)
+            })
+        });
     }
 
     ngOnInit(){
