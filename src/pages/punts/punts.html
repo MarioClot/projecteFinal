@@ -4,9 +4,9 @@
       Punts
     </ion-title>
   </ion-navbar>
-  <header></header>
 </ion-header>
 <ion-content>
+  <header></header>
   <ion-list>
     <ion-item-sliding *ngFor='let jugador of jugadors | async'>
       <ion-item [ngClass]="{'yellow': jugador.faltes==4}" *ngIf="jugador.aPista && jugador.faltes<5">

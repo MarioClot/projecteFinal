@@ -1,6 +1,11 @@
 <div>
-    <!--p *ngFor='let jugador of jugadors | async'>
-        {{jugador.punts}}
-    </p-->
-    <p *ngFor='let stat of stats | async'>P{{ stat.value }}</p>
+    <div class="contenidor">
+        <p class="stats" *ngFor='let stat of stats | async'>{{ stat.value }}</p>
+        <div>
+            <p class="labels">Asists</p>
+            <p class="labels">Faltes</p>
+            <p class="labels">Punts</p>
+            <p class="labels">Rebots</p>
+        </div>
+    </div>
 </div>

@@ -71,5 +71,11 @@ export class ConvocatsPage extends Utils {
       rebots: 0,
       asistencies: 0
     }
+    this.equipRef.update('stats', {
+      puntsTotals: 0,
+      faltesTotals: 0,
+      rebotsTotals: 0,
+      asistenciesTotals: 0
+    })
   }
 }
