@@ -22,7 +22,7 @@ export class PuntsPage extends Utils{
         dorsal: jugador.dorsal,
         punts: jugador.punts+1
     });
-    this.statsTotals.punts++;
+    this.statsTotals.punts++;    
     this.statsRef.update('puntsTotals',{
       value: this.statsTotals.punts
     });

@@ -54,16 +54,16 @@ export class Utils {
 
     ngOnInit(){
         this.equipRef.valueChanges().subscribe(res => this.jugadorsAPista = res[1]);
-        this.statsRef.valueChanges().subscribe(res => this.statsTotals = {
-            punts: res[2].value,
-            faltes: res[1].value,
-            asistencies: res[0].value,
-            rebots: res[3].value
-        });
+        this.statsRef.valueChanges().subscribe(res => 
+            this.statsTotals = {
+                punts: res[2].value,
+                faltes: res[1].value,
+                asistencies: res[0].value,
+                rebots: res[3].value
+            });
     }
 
     jugadorForaPista(jugador){
-      
         this.jugadorsRef.update( jugador.key,{
           dorsal: jugador.dorsal,
           aPista: !jugador.aPista
